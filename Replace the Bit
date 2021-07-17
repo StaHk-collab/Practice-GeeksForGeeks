@@ -37,9 +37,7 @@ class Solution
   public:
     int replaceBit (int n, int k)
     {
-        // 1 0 1 0 1 0
-        //       1 0 0
-        if((floor(log2(n)) + 1) < k)
+        if((floor(log2(n)) + 1) < k)  // number of bits = floor(log2(n)) + 1
         return n;
         else
         return min(n ^ (1 << (int(floor(log2(n)) + 1) - k)), n);
