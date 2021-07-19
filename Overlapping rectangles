@@ -1,0 +1,68 @@
+Given two rectangles, find if the given two rectangles overlap or not. A rectangle is denoted by providing the x and y coordinates of two points: the left top corner and the right
+bottom corner of the rectangle. Two rectangles sharing a side are considered overlapping. (L1 and R1 are the extreme points of the first rectangle and L2 and R2 are the extreme
+points of the second rectangle).
+
+Note: It may be assumed that the rectangles are parallel to the coordinate axis.
+
+Example 1:
+
+Input:
+L1=(0,10)
+R1=(10,0)
+L2=(5,5)
+R2=(15,0)
+Output:
+1
+Explanation:
+The rectangles overlap.
+
+Example 2:
+
+Input:
+L1=(0,2)
+R1=(1,1)
+L2=(-2,-3)
+R2=(0,2)
+Output:
+0
+Explanation:
+The rectangles do not overlap.
+
+
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function doOverlap() which takes the points L1, R1, L2, and R2 as input parameters and returns 1 if
+the rectangles overlap. Otherwise, it returns 0.
+
+
+Expected Time Complexity:O(1)
+Expected Auxillary Space:O(1)
+
+
+Constraints:
+-10^9<=x-coordinate,y-coordinate<=10^9
+
+Solution :
+
+class Solution {
+  public:
+  
+    int doOverlap(int l1[], int r1[], int l2[], int r2[]) {
+        // consider l1, r2 as extreme points for l2, r1 or vice-versa.
+        // if above condition doesn't satisfy, then they don't overlap.
+        
+        if (l1[0] == r1[0] || l1[1] == r1[1] || l2[0] == r2[0] || l2[1] == r2[1]) {
+            // the line cannot have positive overlap
+            return 0;
+        }
+     
+        // If one rectangle is on left side of other
+        if (l1[0] >= r2[0] || l2[0] >= r1[0])
+            return 0;
+     
+        // If one rectangle is above other
+        if (r1[1] >= l2[1] || r2[1] >= l1[1])
+            return 0;
+     
+        return 1;
+    }
+};
