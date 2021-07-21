@@ -1,0 +1,56 @@
+Given a square matrix[][] of size N x N. The task is to rotate it by 90 degrees in an anti-clockwise direction without using any extra space.
+
+Example 1:
+
+Input:
+N = 3
+matrix[][] = [[1 2 3],
+              [4 5 6],
+              [7 8 9]]
+Output:
+3 6 9 
+2 5 8 
+1 4 7
+
+Your Task:
+You only need to implement the given function rotate(). Do not read input, instead use the arguments given in the function. 
+
+Expected Time Complexity: O(N*N)
+Expected Auxiliary Space: O(1)
+
+Constraints:
+1 ≤ N ≤ 50
+1 <= matrix[][] <= 100
+
+Solution :
+
+/* matrix : given input matrix, you are require 
+ to change it in place without using extra space */
+void rotate(vector<vector<int> >& matrix)
+{
+    int N = matrix.size();
+    // Consider all squares one by one
+    for (int x = 0; x < N / 2; x++) {
+        // Consider elements in group
+        // of 4 in current square
+        for (int y = x; y < N - x - 1; y++) {
+            // Store current cell in
+            // temp variable
+            int temp = matrix[x][y];
+ 
+            // Move values from right to top
+            matrix[x][y] = matrix[y][N - 1 - x];
+ 
+            // Move values from bottom to right
+            matrix[y][N - 1 - x]
+                = matrix[N - 1 - x][N - 1 - y];
+ 
+            // Move values from left to bottom
+            matrix[N - 1 - x][N - 1 - y]
+                = matrix[N - 1 - y][x];
+ 
+            // Assign temp to left
+            matrix[N - 1 - y][x] = temp;
+        }
+    }
+}
