@@ -21,7 +21,7 @@ Constraints:
 1 <= T <= 100
 1 <= N <= 500
 
-Solution :
+Solution I :
 
 /*Struture of the node of the linked list is as:
 
@@ -66,4 +66,23 @@ int modularNode(Node* head, int k)
 	    ans = ans -> next;
 	}
 	return -1;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Solution II :
+
+int modularNode(Node* head, int k)
+{
+	if (k <= 0 || head == NULL)return -1; 
+	int i = 1;
+	Node* modularNode = NULL;
+	for (Node* temp = head; temp != NULL; temp = temp->next) {
+		if (i % k == 0) 
+			modularNode = temp;
+		
+		i++;
+	}
+	if(modularNode==NULL)return -1;
+	return modularNode->data;
 }
